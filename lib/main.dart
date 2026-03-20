@@ -1,16 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:learnify/login.dart';
-import 'package:learnify/register.dart';
+import 'package:sociohub/splash_screen.dart';
 
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
-    runApp(const MyApp());
-  });
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,12 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: const Color(0xffE53935),
       ),
-      home: const LoginPage(),
+      home: SplashScreen()
     );
   }
 }
