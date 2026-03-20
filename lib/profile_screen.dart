@@ -10,7 +10,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
   final TextEditingController nameController = TextEditingController();
   final TextEditingController flatController = TextEditingController();
   final TextEditingController mobileController = TextEditingController();
@@ -63,11 +62,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         isEditing = false;
       });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Profile Updated"),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Profile Updated")));
     }
   }
 
@@ -87,10 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(
-              color: Color(0xffE23744),
-              width: 2,
-            ),
+            borderSide: const BorderSide(color: Color(0xffE23744), width: 2),
           ),
         ),
       ),
@@ -104,24 +98,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       appBar: AppBar(
         backgroundColor: const Color(0xffE23744),
-        title: const Text("Profile"),
+        title: const Text("Profile", style: TextStyle(color: Colors.white)),
       ),
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-
             const SizedBox(height: 20),
 
             const CircleAvatar(
               radius: 45,
               backgroundColor: Color(0xffE23744),
-              child: Icon(
-                Icons.person,
-                size: 50,
-                color: Colors.white,
-              ),
+              child: Icon(Icons.person, size: 50, color: Colors.white),
             ),
 
             const SizedBox(height: 25),
@@ -154,10 +143,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 child: Text(
                   isEditing ? "Save Changes" : "Edit Profile",
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
             ),

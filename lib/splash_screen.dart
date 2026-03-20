@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:sociohub/login_screen.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -19,17 +18,32 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => LoginScreen()),
+        MaterialPageRoute(builder: (_) => const LoginScreen()),
       );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xffE53935),
+    return Scaffold(
+      backgroundColor: const Color(0xffE23744),
+
       body: Center(
-        child: Icon(Icons.apartment, color: Colors.white, size: 90),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            Image.asset(
+              'assets/logo.png',
+              width: 130,
+              height: 130,
+            ),
+
+            const SizedBox(height: 20),
+
+
+          ],
+        ),
       ),
     );
   }
