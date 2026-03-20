@@ -1,4 +1,4 @@
-# learnify
+# sociohub
 
 A new Flutter project.
 
