@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sociohub/profile_screen.dart';
 import 'package:sociohub/noticeboard_screen.dart';
 import 'package:sociohub/visitor_screen.dart';
+import 'package:sociohub/payment_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -82,7 +83,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }),
 
-                  buildCard(Icons.payment, "Payments", () {}),
+                  buildCard(Icons.payment, "Payments", () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const PaymentScreen(),
+                      ),
+                    );
+                  }),
 
                   buildCard(Icons.person, "Profile", () {
                     Navigator.push(
