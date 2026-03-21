@@ -49,6 +49,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   InputDecoration customInput(String label, IconData icon) {
     return InputDecoration(
       labelText: label,
+      focusColor: Colors.grey,
+      labelStyle: const TextStyle(color: Colors.grey),
+      floatingLabelStyle: const TextStyle(color: Colors.grey),
       prefixIcon: Icon(icon, color: const Color(0xffE23744)),
       filled: true,
       fillColor: Colors.grey.shade100,
@@ -112,6 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 30),
 
                   TextFormField(
+                    cursorColor: Colors.grey,
                     controller: nameController,
                     decoration: customInput("Full Name", Icons.person),
                     validator: (value) =>
@@ -121,6 +125,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 15),
 
                   TextFormField(
+                    cursorColor: Colors.grey,
                     controller: flatController,
                     decoration: customInput("Flat Number", Icons.home),
                     validator: (value) =>
@@ -130,6 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 15),
 
                   TextFormField(
+                    cursorColor: Colors.grey,
                     controller: mobileController,
                     keyboardType: TextInputType.phone,
                     decoration: customInput("Mobile Number", Icons.phone),
@@ -140,6 +146,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 15),
 
                   TextFormField(
+                    cursorColor: Colors.grey,
                     controller: emailController,
                     decoration: customInput("Email", Icons.email),
                     validator: (value) =>
@@ -149,6 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 15),
 
                   TextFormField(
+                    cursorColor: Colors.grey,
                     controller: passwordController,
                     obscureText: obscurePassword,
                     decoration: customInput("Password", Icons.lock).copyWith(

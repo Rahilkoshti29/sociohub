@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -23,6 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     loadUserData();
   }
 
+  // 🔴 LOAD DATA
   Future<void> loadUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -40,6 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+  // 🔴 SAVE DATA
   Future<void> saveUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -53,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         "flat": flatController.text,
         "mobile": mobileController.text,
         "email": emailController.text,
-        "password": oldData["password"], // keep old password safe
+        "password": oldData["password"],
       };
 
       await prefs.setString('user_data', jsonEncode(updatedData));
@@ -65,16 +68,77 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text("Profile Updated")));
+
+      // 🔥 GO BACK TO HOME
+      Navigator.pop(context);
     }
+  }
+
+  // 🔴 LOGOUT FUNCTION
+  Future<void> logoutUser() async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+
+          title: const Text("Logout"),
+
+          content: const Text("Are you sure you want to logout?"),
+
+          actions: [
+            // ❌ CANCEL
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                "Cancel",
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+
+            // ✅ LOGOUT
+            ElevatedButton(
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+
+                await prefs.remove('user_data');
+
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const LoginScreen()),
+                  (route) => false,
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xffE23744),
+              ),
+              child: const Text(
+                "Logout",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Widget buildField(String label, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextField(
+        cursorColor: Colors.grey,
         controller: controller,
         enabled: isEditing,
         decoration: InputDecoration(
+          labelStyle: const TextStyle(color: Colors.grey),
+          floatingLabelStyle: const TextStyle(color: Colors.grey),
           labelText: label,
           filled: true,
           fillColor: Colors.grey.shade100,
@@ -99,12 +163,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-
-          icon: Icon(Icons.arrow_back_ios_new_sharp, color: Colors.white),
-        ),
         backgroundColor: const Color(0xffE23744),
+
+        // 🔴 BACK FIX
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context); // profile opened via push, so pop is fine
+          },
+        ),
+
         title: const Text("Profile", style: TextStyle(color: Colors.white)),
       ),
 
@@ -129,6 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 20),
 
+            // 🔥 EDIT BUTTON
             SizedBox(
               width: double.infinity,
               height: 50,
@@ -151,6 +220,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text(
                   isEditing ? "Save Changes" : "Edit Profile",
                   style: const TextStyle(color: Colors.white, fontSize: 18),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            // 🔥 LOGOUT BUTTON
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: OutlinedButton(
+                onPressed: logoutUser,
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: Colors.red),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                ),
+                child: const Text(
+                  "Logout",
+                  style: TextStyle(color: Colors.red, fontSize: 18),
                 ),
               ),
             ),

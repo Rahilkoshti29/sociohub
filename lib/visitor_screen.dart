@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VisitorScreen extends StatefulWidget {
-  const VisitorScreen({super.key});
+  final VoidCallback onBackToHome;
+  const VisitorScreen({super.key,required this.onBackToHome});
 
   @override
   State<VisitorScreen> createState() => _VisitorScreenState();
@@ -81,7 +82,7 @@ class _VisitorScreenState extends State<VisitorScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed:  widget.onBackToHome,
           icon: Icon(Icons.arrow_back_ios_new_sharp, color: Colors.white),
         ),
         centerTitle: true,

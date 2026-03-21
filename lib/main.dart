@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sociohub/home_screen.dart';
 import 'package:sociohub/splash_screen.dart';
 
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color(0xffE53935),
       ),
-      home: SplashScreen()
+      home: SplashScreen(),
     );
   }
 }

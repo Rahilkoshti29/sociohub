@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NoticeBoardScreen extends StatefulWidget {
-  const NoticeBoardScreen({super.key});
+  final VoidCallback onBackToHome;
+  const NoticeBoardScreen({super.key,required this.onBackToHome});
 
   @override
   State<NoticeBoardScreen> createState() => _NoticeBoardScreenState();
@@ -80,7 +81,7 @@ class _NoticeBoardScreenState extends State<NoticeBoardScreen> {
         backgroundColor: const Color(0xffE23744),
         automaticallyImplyLeading: false,
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: widget.onBackToHome,
           icon: Icon(Icons.arrow_back_ios_new_sharp, color: Colors.white),
         ),
         centerTitle: true,

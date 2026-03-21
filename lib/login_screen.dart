@@ -25,31 +25,45 @@ class _LoginScreenState extends State<LoginScreen> {
 
       String? userString = prefs.getString('user_data');
 
-      if (userString != null) {
-        Map<String, dynamic> userData = jsonDecode(userString);
+      // 🔴 CASE 1: No user registered
+      if (userString == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("No account found. Please register first."),
+          ),
+        );
+        return;
+      }
 
-        if (emailController.text == userData['email'] &&
-            passwordController.text == userData['password']) {
+      // 🔴 CASE 2: User exists
+      Map<String, dynamic> userData = jsonDecode(userString);
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Login Successful")),
-          );
+      if (emailController.text == userData['email'] &&
+          passwordController.text == userData['password']) {
 
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (_) => const HomeScreen()),
-          );
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Invalid Credentials")),
-          );
-        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Login Successful")),
+        );
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const HomeScreen()),
+        );
+
+      } else {
+        // 🔴 CASE 3: Wrong credentials
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Invalid Email or Password")),
+        );
       }
     }
   }
 
+
   InputDecoration customInput(String label, IconData icon) {
     return InputDecoration(
+      labelStyle: const TextStyle(color: Colors.grey),
+      floatingLabelStyle: const TextStyle(color: Colors.grey),
       labelText: label,
       prefixIcon: Icon(icon, color: const Color(0xffE23744)),
       filled: true,
@@ -111,6 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 30),
 
                   TextFormField(
+                    cursorColor: Colors.grey,
                     controller: emailController,
                     decoration: customInput("Email", Icons.email),
                     validator: (value) =>
@@ -120,6 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 15),
 
                   TextFormField(
+                    cursorColor: Colors.grey,
                     controller: passwordController,
                     obscureText: obscurePassword,
                     decoration: customInput("Password", Icons.lock).copyWith(

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({super.key});
+  final VoidCallback onBackToHome;
+  const PaymentScreen({super.key,required this.onBackToHome});
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -114,11 +115,18 @@ class _PaymentScreenState extends State<PaymentScreen> {
       backgroundColor: Colors.grey[100],
 
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xffE23744),
         title: const Text(
           "Payments",
           style: TextStyle(color: Colors.white),
         ),
+        leading: IconButton(
+          onPressed: widget.onBackToHome,
+
+          icon: Icon(Icons.arrow_back_ios_new_sharp, color: Colors.white),
+        ),
+        centerTitle: true,
       ),
 
       body: SingleChildScrollView(
