@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
 
-  // 🔴 Go Home function
+  // Go Home function
   void goHome() {
     setState(() {
       currentIndex = 0;
@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    // ✅ SAFE: create screens here (no late error)
+    // SAFE: create screens here (no late error)
     final List<Widget> screens = [
       const DashboardPage(), // no callback
       NoticeBoardScreen(onBackToHome: goHome),

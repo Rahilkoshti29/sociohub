@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       String? userString = prefs.getString('user_data');
 
-      // 🔴 CASE 1: No user registered
+      //  CASE 1: No user registered
       if (userString == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
         return;
       }
 
-      // 🔴 CASE 2: User exists
+      //  CASE 2: User exists
       Map<String, dynamic> userData = jsonDecode(userString);
 
       if (emailController.text == userData['email'] &&
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
         );
 
       } else {
-        // 🔴 CASE 3: Wrong credentials
+        //  CASE 3: Wrong credentials
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Invalid Email or Password")),
         );

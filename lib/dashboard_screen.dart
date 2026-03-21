@@ -12,7 +12,6 @@ class DashboardPage extends StatelessWidget {
       body: Column(
         children: [
 
-          // 🔴 FIXED HEADER (NOT TOO UP)
           Container(
             width: double.infinity,
             padding: const EdgeInsets.only(top: 45, left: 15, right: 15, bottom: 20),
@@ -26,7 +25,6 @@ class DashboardPage extends StatelessWidget {
             child: Row(
               children: [
 
-                // 👤 PROFILE CLICK
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -47,7 +45,7 @@ class DashboardPage extends StatelessWidget {
 
                 const Expanded(
                   child: Text(
-                    "Hello, Resident 👋",
+                    "Hello, Resident",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -61,14 +59,12 @@ class DashboardPage extends StatelessWidget {
             ),
           ),
 
-          // 🔽 CONTENT
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(15),
               child: Column(
                 children: [
 
-                  // 🔥 WELCOME CARD (FIRST)
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(18),
@@ -80,7 +76,7 @@ class DashboardPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Welcome 👋",
+                          "Welcome",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -94,7 +90,6 @@ class DashboardPage extends StatelessWidget {
 
                   const SizedBox(height: 15),
 
-                  // 🏢 BUILDING IMAGE (PROPER)
                   ClipRRect(
                     borderRadius: BorderRadius.circular(18),
                     child: Image.asset(
@@ -107,7 +102,6 @@ class DashboardPage extends StatelessWidget {
 
                   const SizedBox(height: 15),
 
-                  // 🔥 SOCIETY DETAILS
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(18),
@@ -135,7 +129,6 @@ class DashboardPage extends StatelessWidget {
 
                         const SizedBox(height: 12),
 
-                        // 📍 Address
                         const Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -151,7 +144,6 @@ class DashboardPage extends StatelessWidget {
 
                         const SizedBox(height: 10),
 
-                        // 🏠 Flats
                         const Row(
                           children: [
                             Icon(Icons.home, color: Colors.grey),
@@ -162,7 +154,6 @@ class DashboardPage extends StatelessWidget {
 
                         const SizedBox(height: 10),
 
-                        // 🛡 Security
                         const Row(
                           children: [
                             Icon(Icons.security, color: Colors.grey),
@@ -177,7 +168,6 @@ class DashboardPage extends StatelessWidget {
 
                         const SizedBox(height: 10),
 
-                        // 🏢 AMENITIES
                         const Text(
                           "Amenities",
                           style: TextStyle(
@@ -207,7 +197,6 @@ class DashboardPage extends StatelessWidget {
 
                         const SizedBox(height: 10),
 
-                        // 📞 CONTACT
                         const Text(
                           "Society Contact",
                           style: TextStyle(
@@ -242,7 +231,6 @@ class DashboardPage extends StatelessWidget {
 
                         const SizedBox(height: 10),
 
-                        // 📱 ABOUT APP
                         const Text(
                           "About App",
                           style: TextStyle(

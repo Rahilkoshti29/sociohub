@@ -24,7 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     loadUserData();
   }
 
-  // 🔴 LOAD DATA
+  // LOAD DATA
   Future<void> loadUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -42,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
-  // 🔴 SAVE DATA
+  // SAVE DATA
   Future<void> saveUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -69,12 +69,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         context,
       ).showSnackBar(const SnackBar(content: Text("Profile Updated")));
 
-      // 🔥 GO BACK TO HOME
+      // GO BACK TO HOME
       Navigator.pop(context);
     }
   }
 
-  // 🔴 LOGOUT FUNCTION
+  // LOGOUT FUNCTION
   Future<void> logoutUser() async {
     showDialog(
       context: context,
@@ -91,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           content: const Text("Are you sure you want to logout?"),
 
           actions: [
-            // ❌ CANCEL
+            // CANCEL
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -102,7 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
 
-            // ✅ LOGOUT
+            // LOGOUT
             ElevatedButton(
               onPressed: () async {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -165,7 +165,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
         backgroundColor: const Color(0xffE23744),
 
-        // 🔴 BACK FIX
+        // BACK FIX
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () {
@@ -197,7 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 20),
 
-            // 🔥 EDIT BUTTON
+            // EDIT BUTTON
             SizedBox(
               width: double.infinity,
               height: 50,
@@ -226,7 +226,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 15),
 
-            // 🔥 LOGOUT BUTTON
+            // LOGOUT BUTTON
             SizedBox(
               width: double.infinity,
               height: 50,
